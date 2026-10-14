@@ -1,0 +1,30 @@
+{
+  "name": "Spotify Dark",
+  "dataColors": ["#1DB954", "#1ED760", "#B3B3B3", "#509BF5", "#F573A0", "#FFC864", "#AF2896", "#E8115B", "#148A08", "#2D46B9"],
+  "background": "#121212",
+  "foreground": "#FFFFFF",
+  "tableAccent": "#1DB954",
+  "good": "#1DB954",
+  "neutral": "#B3B3B3",
+  "bad": "#E8115B",
+  "textClasses": {
+    "title":  { "fontFace": "Segoe UI Semibold", "fontSize": 14, "color": "#FFFFFF" },
+    "header": { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#FFFFFF" },
+    "label":  { "fontFace": "Segoe UI", "fontSize": 10, "color": "#B3B3B3" },
+    "callout":{ "fontFace": "Segoe UI Bold", "fontSize": 28, "color": "#1DB954" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#181818" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#282828" } }, "radius": 8 }],
+        "title": [{ "fontColor": { "solid": { "color": "#FFFFFF" } } }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#121212" } }, "transparency": 0 }]
+      }
+    }
+  }
+}
