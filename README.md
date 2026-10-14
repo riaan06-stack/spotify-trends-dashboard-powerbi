@@ -54,6 +54,7 @@ The report has four linked pages: a Music Executive Overview, a Hit Drivers Deep
 - Removed **4** duplicate tracks (same track + artist), keeping the higher stream count.
 - Converted `in_deezer_playlists` and `in_shazam_charts` from text with thousands separators to numbers; **50** blank Shazam values set to 0.
 - Filled **94** missing `key` values with `Unknown`.
+- Repaired **114** track/artist names whose accented letters were broken in the source file (e.g. `ROSALï¿½` → `ROSALÍA`, `Tiï¿½ï¿½sto` → `Tiësto`, `Donï¿½ï¿½ï¿½t` → `Don't`); characters that could not be recovered are shown as `?`.
 - Renamed `artist(s)_name` → `artist_name` and `*_%` → `*_pct`; added `track_id` and `release_date`.
 
 ### 🧮 Calculated Columns
@@ -87,13 +88,15 @@ All formulas are in [`dax/DAX_Calculated_Columns_and_Measures.md`](dax/DAX_Calcu
 
 ## 📊 Dashboard Pages
 
+> 🖼️ **About the images:** the page previews below were rendered with Python (`scripts/render_dashboard.py`, matplotlib) directly from the cleaned dataset, following the same page design, measures and numbers as the Power BI report. On the Hit Drivers preview, the Key Influencers and Decomposition Tree are represented by a key-drivers chart and an Era × Playlist Reach breakdown.
+
 ### 1️⃣ Music Executive Overview
 
 ![Music Executive Overview](images/spotifyOverview.png)
 
 The landing page, giving a high-level view of streaming performance.
 
-**KPI cards:** Total Tracks **948** · Total Streams **487.6B** · Avg Streams/Track **514.3M** · Billion Club Tracks **152** · Billion Club Rate **16.0%** · Total Artists **458**
+**KPI cards:** Total Tracks **948** · Total Streams **487.6B** · Avg Streams/Track **514.3M** · Billion Club Tracks **152** · Billion Club Rate **16.0%** · Total Artists **456**
 
 **Visuals:**
 
@@ -148,11 +151,9 @@ Focuses on the factors a label or artist team can actually influence.
 
 ### 4️⃣ Track Details (Drill-through)
 
-**Step 1: Right-click an artist or era on the Overview page → Drill through → Track Details**
+**Step 1:** Right-click an artist or era on the Overview page → **Drill through → Track Details**
 
-![Drill-through Menu](images/spotifyDrillThrough.png)
-
-**Step 2: The hidden Track Details page opens, filtered to that selection**
+**Step 2:** The hidden Track Details page opens, filtered to that selection (example below: Primary Artist = The Weeknd)
 
 ![Track Details](images/spotifyDetails.png)
 
@@ -218,7 +219,6 @@ spotify-trends-dashboard-powerbi/
 │   ├── spotifyOverview.png                     # Executive Overview page
 │   ├── spotifyDeepDive.png                     # Hit Drivers Deep Dive page
 │   ├── spotifyLevers.png                       # Performance Levers page
-│   ├── spotifyDrillThrough.png                 # Drill-through menu
 │   └── spotifyDetails.png                      # Track Details page
 │
 ├── powerBI/
@@ -226,7 +226,8 @@ spotify-trends-dashboard-powerbi/
 │   └── spotify_theme.json                      # Custom Spotify dark theme
 │
 ├── scripts/
-│   └── clean_data.py                           # Data cleaning script
+│   ├── clean_data.py                           # Data cleaning script
+│   └── render_dashboard.py                     # Renders the dashboard preview images
 │
 ├── BUILD_GUIDE.md                              # Step-by-step dashboard build
 ├── GIT_STEPS.md                                # How to push this project to GitHub
@@ -237,7 +238,7 @@ spotify-trends-dashboard-powerbi/
 
 ## 🛠 Tools Used
 
-- **Python (pandas)**: cleaning the raw Kaggle CSV
+- **Python (pandas, matplotlib)**: cleaning the raw Kaggle CSV and rendering the dashboard preview images
 - **Power BI Desktop**: report design, Key Influencers, Decomposition Tree, drill-through and page navigation
 - **Power Query**: loading and typing the Excel dataset
 - **DAX**: calculated columns and measures for streams, Billion Club rate and audio-feature averages

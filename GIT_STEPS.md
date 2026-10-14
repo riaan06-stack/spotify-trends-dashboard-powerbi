@@ -37,10 +37,9 @@ git init
 git add .
 git commit -m "Add Spotify music trends Power BI dashboard"
 git branch -M main
-git remote add origin https://github.com/<your-username>/spotify-trends-dashboard-powerbi.git
+git remote add origin https://github.com/riaan06/spotify-trends-dashboard-powerbi.git
 git push -u origin main
 ```
-Replace `<your-username>` with your GitHub username.
 
 When asked to sign in, a browser window opens – log in to GitHub and approve.
 (If it asks for a password in the terminal, use a **Personal Access Token**: GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate, tick `repo`, and paste it as the password.)
@@ -74,7 +73,7 @@ git push
 ## Troubleshooting
 | Problem | Fix |
 | --- | --- |
-| `remote origin already exists` | `git remote set-url origin https://github.com/<your-username>/spotify-trends-dashboard-powerbi.git` |
+| `remote origin already exists` | `git remote set-url origin https://github.com/riaan06/spotify-trends-dashboard-powerbi.git` |
 | `failed to push… fetch first` (you created the repo with a README) | `git pull origin main --allow-unrelated-histories` then `git push -u origin main` |
 | Images not showing in README | Check file names in `images/` match exactly (case-sensitive): `spotifyOverview.png` etc. |
 | `.pbix` over 100 MB | Very unlikely with this dataset; if it happens, use Git LFS: `git lfs install` → `git lfs track "*.pbix"` → commit `.gitattributes` |
